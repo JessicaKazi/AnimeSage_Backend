@@ -1,6 +1,8 @@
 
 require("dotenv").config();
 
+import recommendationsRoutes from "./routes/recommendations.js";
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -30,6 +32,9 @@ app.use(express.json({ limit: "20kb" }));
 // anime watchlist
 app.use("/api/auth", authRoutes);
 app.use("/api/watchlist", watchlistRoutes);
+
+// anime recommendation
+app.use("/api/recommendations", recommendationsRoutes);
 
 const animeQuery = `
   query ($search: String, $page: Int, $perPage: Int) {
